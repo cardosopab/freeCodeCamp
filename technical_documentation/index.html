@@ -6,39 +6,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vim</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
     <nav id="navbar">
-        <header>
-
-        </header>
+        <header>Vim Keybindings</header>
         <ul>
-            <li><a id="nav-link" href=""></a></li>
-            <li><a id="nav-link" href=""></a></li>
-            <li><a id="nav-link" href=""></a></li>
-            <li><a id="nav-link" href=""></a></li>
-            <li><a id="nav-link" href=""></a></li>
+            <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class="nav-link" href="#History">History</a></li>
+            <li><a class="nav-link" href="#Prior_knowledge">Prior knowledge</a></li>
+            <li><a class="nav-link" href="#Basic">Basic</a></li>
+            <li><a class="nav-link" href="#Movement">Movement</a></li>
+            <li><a class="nav-link" href="#Insertion">Insertion</a></li>
+            <li><a class="nav-link" href="#Editing">Editing</a></li>
+            <li><a class="nav-link" href="#Combinations">Combinations</a></li>
+            <li><a class="nav-link" href="#References">References</a></li>
         </ul>
     </nav>
     <main id="main-doc">
-        <section class="main-section">
-            <header id=""></header>
+        <section id="Introduction" class="main-section">
+            <header>Introduction</header>
+            <p>Vim is a powerful command-line code editor tool that is an enhanced version of the original vi editor. It
+                is available for most operating systems, including macOS, Windows, and Linux. Vim is a modal editor,
+                which means it has different modes, such as command mode and insert mode, that determine the function of
+                the keys on your keyboard. Vim is popular among programmers, coders, and system administrators due to
+                its efficiency and the ability to work with multiple documents and windows.</p>
         </section>
-        <section class="main-section">
-            <header id=""></header>
+        <section id="History" class="main-section">
+            <header>History</header>
+            <p>Vim was created in 1991 as a free, open-source software. It was designed as an improved version of the vi
+                editor, which was created for Unix in the 1970s. Vim stands for "vi improved" and was initially designed
+                with Unix in mind, but now has versions for most operating systems, including Android and iOS
+                smartphones.</p>
         </section>
-        <section class="main-section">
-            <header id=""></header>
+        <section id="Prior_knowledge" class="main-section">
+            <header>Prior knowledge</header>
+            <p>Before diving into Vim, it's helpful to be familiar with basic text editing concepts and keyboard
+                shortcuts, as Vim relies on unique commands and modes to edit text efficiently. If you're new to Vim,
+                you can run vimtutor in the terminal to learn some initial commands and get started.</p>
         </section>
-        <section class="main-section">
-            <header id=""></header>
+        <section id="Basic" class="main-section">
+            <header>Basic</header>
+            <ul>
+                <li>
+                    <code>:w</code>
+                    <p>Save file</p>
+                </li>
+                <li>
+                    <code>:q</code>
+                    <p>Quit Vim</p>
+                </li>
+                <li>
+                    <code>:q!</code>
+                    <p>Quit Vim without saving</p>
+                </li>
+                <li>
+                    <code>:help [keyword]</code>
+                    <p>Perform a search of help documentation for the specified keyword</p>
+                </li>
+            </ul>
         </section>
-        <section class="main-section">
-            <header id=""></header>
+        <section id="Movement" class="main-section">
+            <header>Movement</header>
+            <ul>
+                <li>
+                    <code>h</code>
+                    <p>Move left</p>
+                </li>
+                <li>
+                    <code>j</code>
+                    <p>Move down</p>
+                </li>
+                <li>
+                    <code>k</code>
+                    <p>Move up</p>
+                </li>
+                <li>
+                    <code>l</code>
+                    <p>Move right</p>
+                </li>
+                <li>
+                    <code>w</code>
+                    <p>Move to beginning of word</p>
+                </li>
+                <li>
+                    <code>e</code>
+                    <p>Move to end of word</p>
+                </li>
+            </ul>
+        </section>
+        <section id="Insertion" class="main-section">
+            <header>Insertion</header>
+            <ul>
+                <li>
+                    <code>i</code>
+                    <p>Insert before cursor</p>
+                </li>
+                <li>
+                    <code>a</code>
+                    <p>Insert after cursor</p>
+                </li>
+                <li>
+                    <code>o</code>
+                    <p>Insert into a newly created line under cursor</p>
+                </li>
+                <li>
+                    <code>I</code>
+                    <p>Insert at the beginning of the line</p>
+                </li>
+                <li>
+                    <code>A</code>
+                    <p>Insert at the end of the line</p>
+                </li>
+                <li>
+                    <code>O</code>
+                    <p>Insert into a newly created line above cursor</p>
+                </li>
+                <li>
+                    <code>Esc</code>
+                    <p>Return to command mode</p>
+                </li>
+            </ul>
+        </section>
+        <section id="Editing" class="main-section">
+            <header>Editing</header>
+            <ul>
+                <li>
+                    <code>y</code>
+                    <p>Copy (yank) the highlighted section</p>
+                </li>
+                <li>
+                    <code>yy</code>
+                    <p>Copy (yank) the current line</p>
+                </li>
+                <li>
+                    <code>p</code>
+                    <p>Paste</p>
+                </li>
+                <h3>Flow</h3>
+                <li>
+                    <code>u</code>
+                    <p>Undo last change</p>
+                </li>
+                <li>
+                    <code>Ctrl + r</code>
+                    <p>Redo last change</p>
+                </li>
+                <h3>Delete</h3>
+                <li>
+                    <code>dd</code>
+                    <p>Deletes the line cursor is on</p>
+                </li>
+                <li>
+                    <code>x</code>
+                    <p>Delete character under cursor</p>
+                </li>
+                <h3>Alter</h3>
+                <li>
+                    <code>ctrl + a</code>
+                    <p>Increment number</p>
+                </li>
+                <li>
+                    <code>ctrl + x</code>
+                    <p>Decrement number</p>
+                </li>
+                <li>
+                    <code>r</code>
+                    <p>Replace character under cursor</p>
+                </li>
+                <li>
+                    <code>ciw</code>
+                    <p>Change in word (deletes word and goes into insert mode)</p>
+                </li>
+                <li>
+                    <code>ci+"character"</code>
+                    <p>Change in character (deletes everything within matching characters e.g. parenthesis/brackets and
+                        goes into insert mode)</p>
+                </li>
+                <li>
+                    <code>ca+"character"</code>
+                    <p>Change outside character (deletes everything including matching characters e.g.
+                        parenthesis/brackets and goes into insert mode)</p>
+                </li>
+                <h3>Find</h3>
+                <li>
+                    <code>/:</code>
+                    <p>Search for a string in the current file</p>
+                </li>
+                <li>
+                    <code>n</code>
+                    <p>Move to the next search result</p>
+                </li>
+                <li>
+                    <code>N</code>
+                    <p>Move to the previous search result</p>
+                </li>
+                <li>
+                    <code>:s/"old characters"/"new characters"/g</code>
+                    <p>Replace old characters with new ones in the whole line (Press Enter to commit change, Esc to
+                        decline)</p>
+                </li>
+                <h3>Highlight</h3>
+                <li>
+                    <code>v</code>
+                    <p>Enter visual mode and highlight spot</p>
+                </li>
+                <li>
+                    <code>V</code>
+                    <p>Enter visual mode and highlight line</p>
+                </li>
+                <li>
+                    <code>ctrl + v</code>
+                    <p>Enter visual mode and highlight spot and column depending on if you go up or down</p>
+                </li>
+            </ul>
+        </section>
+        <section id="Combinations" class="main-section">
+            <header>Combinations</header>
+            <ul>
+                <li>
+                    <code>v + w</code>
+                    <p>Highlight words that can be deleted with <code>x</code> or copied with <code>y</code></p>
+                </li>
+                <li>
+                    <code>ctrl + v</code>
+                    <p>Highlight spot, then <code>j</code> or <code>k</code> to go down or up, adding to the characters
+                        highlighted in the column, and finally <code>I</code> or <code>A</code> to insert before or
+                        after the column for multi-line insertion</p>
+                </li>
+            </ul>
+        </section>
+        <section id="References" class="main-section">
+            <header>References</header>
+            <p>keycdn.com: Popular Vim Commands - Comprehensive Vim Cheat Sheet</p>
+            <p>maketecheasier.com: VIM Keyboard Shortcuts Cheatsheet</p>
         </section>
     </main>
-
 </body>
 
 </html>
