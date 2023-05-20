@@ -12,7 +12,8 @@
 <body>
     <nav id="navbar">
         <header>Vim Keybindings</header>
-        <ul>
+        <div class="menu-toggle"></div>
+        <ul class="dropdown-menu">
             <li><a class="nav-link" href="#Introduction">Introduction</a></li>
             <li><a class="nav-link" href="#History">History</a></li>
             <li><a class="nav-link" href="#Prior_knowledge">Prior knowledge</a></li>
@@ -24,6 +25,7 @@
             <li><a class="nav-link" href="#References">References</a></li>
         </ul>
     </nav>
+
     <main id="main-doc">
         <section id="Introduction" class="main-section">
             <header>Introduction</header>
@@ -156,11 +158,11 @@
                 <h3>Delete</h3>
                 <li>
                     <code>dd</code>
-                    <p>Deletes the line cursor is on</p>
+                    <p>Deletes the line, cursor is on</p>
                 </li>
                 <li>
                     <code>x</code>
-                    <p>Delete character under cursor</p>
+                    <p>Delete character under cursor, or highlighted text</p>
                 </li>
                 <h3>Alter</h3>
                 <li>
@@ -180,18 +182,16 @@
                     <p>Change in word (deletes word and goes into insert mode)</p>
                 </li>
                 <li>
-                    <code>ci+"character"</code>
-                    <p>Change in character (deletes everything within matching characters e.g. parenthesis/brackets and
-                        goes into insert mode)</p>
+                    <code>ci' , ci" , ci( , ci[ ci{</code>
+                    <p>Change in (deletes everything within matching opening, and closing characters, and goes into insert mode)</p>
                 </li>
                 <li>
-                    <code>ca+"character"</code>
-                    <p>Change outside character (deletes everything including matching characters e.g.
-                        parenthesis/brackets and goes into insert mode)</p>
+                    <code>ca' , ca" , ca( , ca[ ca{</code>
+                    <p>Change around (deletes everything around matching opening, and closing characters, and goes into insert mode)</p>
                 </li>
                 <h3>Find</h3>
                 <li>
-                    <code>/:</code>
+                    <code>/</code>
                     <p>Search for a string in the current file</p>
                 </li>
                 <li>
@@ -239,10 +239,13 @@
         </section>
         <section id="References" class="main-section">
             <header>References</header>
-            <p>keycdn.com: Popular Vim Commands - Comprehensive Vim Cheat Sheet</p>
-            <p>maketecheasier.com: VIM Keyboard Shortcuts Cheatsheet</p>
+            <p><a href='https://www.keycdn.com/blog/vim-commands' target="_blank">keycdn.com</a>: Popular Vim Commands - Comprehensive Vim Cheat Sheet</p>
+            <p><a href="https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/" target="_blank">maketecheasier.com</a> VIM Keyboard Shortcuts Cheatsheet</p>
         </section>
     </main>
+    <script src="main.js">
+    </script>
+
 </body>
 
 </html>

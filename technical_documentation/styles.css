@@ -1,0 +1,108 @@
+body {
+    margin: 10px;
+}
+
+#navbar {
+    margin: 10px;
+}
+
+#navbar header {
+    background-color: aliceblue;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+#main-doc header {
+    background-color: aliceblue;
+    font-size: 1.3em;
+}
+
+h3 {
+    font-size: 1.1em;
+    font-weight: normal;
+    background-color: lightgoldenrodyellow;
+}
+
+code {
+    background-color: lightgrey;
+    padding: 4px;
+}
+
+a{
+    text-decoration: none;
+    color: darkblue;
+}
+
+#References{
+    margin-bottom: 80px;
+}
+
+@media (min-width: 800px) {
+    #navbar {
+        text-align: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 200px;
+        height: 100vh;
+        overflow-y: auto;
+        border-right: 2px solid lightgray;
+    }
+
+    #main-doc {
+        margin-left: 220px;
+    }
+
+    #navbar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #navbar li {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid lightgray;
+    }
+}
+
+@media (max-width: 800px) {
+    #navbar {
+        text-align: center;
+    }
+
+    #navbar ul {
+        display: none;
+    }
+
+    #navbar .menu-toggle {
+        text-align: right;
+        display: block;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    #navbar .menu-toggle::after {
+        content: '\2630';
+        /* Hamburger icon */
+        font-size: 1.5em;
+    }
+
+    #navbar .menu-toggle.active::after {
+        content: '\2715';
+        /* Close icon */
+    }
+
+    #navbar .dropdown-menu {
+        display: none;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #navbar .dropdown-menu.active {
+        display: block;
+    }
+
+    #navbar .dropdown-menu li {
+        margin-bottom: 5px;
+    }
+}
