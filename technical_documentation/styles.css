@@ -39,7 +39,6 @@ a{
 
 @media (min-width: 800px) {
     #navbar {
-        text-align: center;
         position: fixed;
         left: 0;
         top: 0;
@@ -67,7 +66,6 @@ a{
 
 @media (max-width: 800px) {
     #navbar {
-        text-align: center;
     }
 
     #navbar ul {

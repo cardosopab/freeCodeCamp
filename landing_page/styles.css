@@ -1,0 +1,233 @@
+:root {
+    --primary-color: #333;
+    --secondary-color: #ddd;
+    --tertiary-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--primary-color)
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Header */
+#header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#logo-name {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+/* Nav bar */
+#nav-bar {
+    background-color: var(--secondary-color);
+    position: fixed;
+    top: 0;
+    width: calc(100% - 60px);
+    padding: 30px 0;
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 5px;
+}
+
+/* Hero image */
+#header-img {
+    width: 100%;
+    height: auto;
+}
+
+/* Center h1 element */
+h1,
+#header-subtitle,
+#header>p {
+    text-align: center;
+}
+
+#header p {
+
+    font-size: 1.2rem;
+}
+
+/* Form styling */
+#form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#email {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+}
+
+#submit {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Features section */
+
+#features {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 60px;
+}
+
+.features-row {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.features-column {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+#features i {
+    font-size: 60px;
+}
+
+#video {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Memberships section */
+#memberships {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0;
+}
+
+#memberships div {
+    border: 1px solid var(--primary-color);
+    padding: 20px;
+    text-align: center;
+    margin: 0 5px;
+}
+
+#memberships h3 {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px;
+}
+
+#memberships h3:hover {
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+}
+
+#memberships h4,
+#memberships p {
+    margin: 10px 0;
+}
+
+#memberships ul {
+    text-align: start;
+    margin: 0;
+    padding: 0 5px;
+}
+
+/* Footer */
+
+#footer-bar ul {
+    list-style: none;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: var(--secondary-color);
+    padding-left: 20px;
+}
+
+#footer-bar {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    padding: 30px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+@media screen and (max-width: 800px) {
+    #logo-name {
+        font-size: 26px;
+    }
+    #nav-bar {
+        padding: 10px 0;
+    }
+    #nav-bar a{
+        font-size: 16px;
+    }
+
+    #nav-bar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #video {
+        width: 80vw;
+    }
+
+    #features,
+    #memberships {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #memberships div {
+        margin: 10px 0;
+    }
+
+    #memberships ul {
+        text-align: start;
+    }
+}
