@@ -1,0 +1,155 @@
+:root {
+    --header-background-color: rgb(148, 47, 148);
+    --header-background2-color: rgb(22, 128, 128);
+    --navbar-background-color: rgb(41, 9, 48);
+    color-scheme: light dark;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 3rem;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+
+/* Header */
+#navbar {
+    background-color: var(--navbar-background-color);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 30px 0;
+    padding-right: 30px;
+    display: flex;
+    justify-content: end;
+}
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navlink {
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+}
+
+
+
+#welcome-section {
+    height: 100vh;
+    background: linear-gradient(var(--header-background-color), var(--header-background2-color));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 20px;
+    text-align: center;
+}
+
+#link-container {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#link-container a{
+    color: white;
+}
+
+.header-link {
+    font-size: 3rem;
+}
+
+/* Projects */
+#projects {
+    padding: 0 20px;
+    text-align: center;
+    background-color: var(--header-background2-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#project-container {
+    margin-top: 80px;
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 6fr));
+}
+
+.project-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.project-tile a {
+    background-color: var(--header-background-color);
+    width: 30%;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+}
+
+img {
+    margin: 20px;
+}
+
+
+/* Contact */
+#contact {
+    height: 100vh;
+    background: linear-gradient(var(--header-background2-color), var(--header-background-color));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: var(--navbar-background-color);
+    padding: 30px 0;
+    padding-right: 30px;
+    display: flex;
+    justify-content: end;
+}
+
+hr {
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Media query for breakpoint */
+@media (max-width: 700px) {
+    #project-container {
+        grid-template-columns: repeat(1, minmax(320px, 6fr));
+    }
+
+    .header-link {
+        font-size: 2rem;
+    }
+}
+
