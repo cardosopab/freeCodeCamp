@@ -1,0 +1,107 @@
+$window-background: #c0d8d8;
+$body-background: #87b5b5;
+$tab-background: #4aa3a3;
+$box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.516);
+$max-width: 1000px;
+$editor-width: min(60vw, ($max-width*.6));
+$preview-width: min(80vw, ($max-width*.8));
+$preview-padding: 2em;
+$initial-font-size: 16px;
+
+* {
+  --preview-offset-width: 0;
+  padding: 0;
+  margin: 0;
+
+  body {
+    background-color: $body-background;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    .tab {
+      background-color: $tab-background;
+      padding: 1em;
+      font-size: .6em;
+      border: .1em solid;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .expand {
+        font-size: 1.6em;
+      }
+
+    }
+
+    .window {
+      margin: 2em 0;
+      box-shadow: $box-shadow;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%);
+      background-color: $window-background;
+
+    }
+
+    .editor {
+      width: $editor-width;
+
+      #editor {
+        width: 100%;
+        background-color: $window-background;
+        margin: auto;
+      }
+
+    }
+
+    .preview {
+      width: $preview-width;
+
+      #preview {
+        padding: $preview-padding;
+        word-wrap: normal;
+        overflow-wrap: normal;
+
+        code {
+          background-color: white;
+          white-space: break-spaces;
+          word-wrap: normal;
+          overflow-wrap: normal;
+        }
+
+        ul {
+          padding-inline-start: $preview-padding;
+
+        }
+
+        li {
+          margin-left: $preview-padding;
+        }
+
+
+        @media (max-width: 400px) {
+          font-size: 10px;
+        }
+
+        @media (max-width: 800px) {
+          font-size: 13px;
+        }
+
+        @media (max-width: 1000px) {
+          font-size: 16px;
+        }
+
+        img {
+          margin-top: 2em;
+          max-width: 90%;
+          position: relative;
+          left: 50%;
+          transform: translate(-50%);
+        }
+      }
+    }
+  }
+}
