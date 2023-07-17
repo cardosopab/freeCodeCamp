@@ -1,62 +1,96 @@
 $button-length: 4em;
 $extended-button: 8em;
+$shadow-color: black;
+$shadow-hover: white;
+$label-color: #e26a27;
+$machine-color: #3e3e41;
+$machine-border: #d8d9d8;
+$display-color: #d9d975;
+$display-border: #bbc4ac;
+$button-color: #78a6a8;
+$equals-color: #004466;
+$body-color: #aaa;
 
 * {
   margin: 0;
   padding: 0;
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    color: white;
+    background-color: $body-color;
+    font-family: 'DS-Digital', 'Digital-7', 'LED', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', monospace, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    .button {
-      background-color: blue;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: $button-length;
-      height: $button-length;
-    }
 
-    .wide {
-      width: $extended-button;
-      grid-column: span 2;
-    }
-
-    .tall {
-      height: $extended-button;
-    }
 
     #calculator {
-      background-color: rgb(255, 185, 185);
+      background-color: $machine-color;
+      padding: 1em;
+      border: .2em solid $machine-border;
       position: fixed;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
 
-      .row-one {
-        display: flex;
-
+      #label {
+        font-size: 1.5em;
+        color: $label-color;
+        text-align: end;
+        margin-bottom: 1em;
       }
 
-      .row-two {
+      .screen {
+        height: 3em;
         display: flex;
-
-        .number-container {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .row-two-col {
-          background-color: white;
-          height: 100%;
-        }
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: $display-color;
+        padding: 1em;
+        box-shadow: inset 0 0 0 2px $shadow-color;
+        text-align: end;
       }
 
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        .button {
+          background-color: $button-color;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: $button-length;
+          height: $button-length;
+          box-shadow: inset 0 0 0 2px $shadow-color;
+        }
+
+        .button:first-child {
+          background-color: tomato;
+          width: $extended-button;
+          grid-area: 1 / 1 / 2 / 3;
+
+        }
+
+        .button:nth-child(15) {
+          background-color: $equals-color;
+          height: $extended-button;
+          grid-area: span 2;
+        }
+
+        .button:nth-child(16) {
+
+          width: $extended-button;
+          grid-area: 5 / 1 / 5 / 3;
+        }
+
+        .button:hover {
+          box-shadow: inset 0 0 0 2px $shadow-hover;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
