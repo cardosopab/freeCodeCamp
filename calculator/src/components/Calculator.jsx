@@ -1,108 +1,125 @@
-// import Display from './Display'
-import { buttonData, operators, numbers } from '../models/calculatorData'
-import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setOutput, setInput, setCaculatorData } from '../redux/calculatorSlice'
+import { buttonData, numbers, operators } from '../models/calculatorData'
+import { useState } from 'react';
 function Calculator() {
-  
-  const dispatch = useDispatch();
-  const input = useSelector(state => state.calculator.input)
-  const output = useSelector(state => state.calculator.output)
-  const calculatorData = useSelector(state => state.calculator.calculatorData)
+
+  const [input, setInput] = useState("0");
+  const [output, setOutput] = useState("");
+  const [isSubmitted, setSubmitted] = useState(false);
+
+  const isOperator = (symbol) => {
+    return /[*/+-]/.test(symbol);
+  };
+
+  const handleEquals = () => {
+    const total = eval(output);
+    setOutput(`${total}`);
+    setInput(`${total}`);
+  };
+
+  const handleClear = () => {
+    setOutput("");
+    setInput("0");
+  };
 
 
-  function handleEquals() {
-    const answer = eval(calculatorData);
-    dispatch(setInput(answer));
-    dispatch(setOutput(`${answer}=${answer}`));
-    dispatch(setCaculatorData(`${answer}`))
-  }
-  function handleClear() {
-    dispatch(setInput('0'))
-    dispatch(setCaculatorData(''))
-  }
-  function handleNumbers(value) {
-    if (!calculatorData.length) {
-      dispatch(setInput(`${value}`));
-      dispatch(setCaculatorData(`${value}`));
+  const handleNumbers = (value) => {
+    if (!output.length) {
+      setOutput(`${value}`);
+      setInput(`${value}`);
     } else {
-      if (value === 0 && (calculatorData === '0' || input === '0')) {
-        dispatch(setCaculatorData(`${calculatorData}`));
+      if (value === 0 && (output === "0" || input === "0")) {
+        setOutput(`${output}`);
       } else {
-        const lastChar = calculatorData.charAt(calculatorData.length - 1);
-        const isLastCharOperator = lastChar === '*' || operators.includes(lastChar);
-        dispatch(setInput(isLastCharOperator ? `${value}` : `${input}${value}`));
-        dispatch(setCaculatorData(`${calculatorData}${value}`));
+        if (isSubmitted) {
+          setSubmitted(false)
+          setInput(`${value}`);
+          setOutput(`${value}`);
+        } else if (isSubmitted && isOperator(value)) {
+          setSubmitted(false)
+          setInput(`${input}${value}`);
+          setOutput(`${output}${value}`);
+        } else if (!isSubmitted) {
+          const lastChar = output.charAt(output.length - 1);
+          const isLastCharOperator =
+            isOperator(lastChar);
+
+          setInput(isLastCharOperator ? `${value}` : `${input}${value}`);
+          setOutput(`${output}${value}`);
+        }
       }
     }
-  }
-  function handleDecimal() {
-    const lastChar = calculatorData.charAt(calculatorData.length - 1);
-    if (!calculatorData.length) {
-      dispatch(setInput('0.'));
-      dispatch(setCaculatorData('0.'));
+  };
+
+  const handleDecimal = () => {
+    const lastChar = output.charAt(output.length - 1);
+    if (!output.length) {
+      setInput("0.");
+      setOutput("0.");
     } else {
-      if (lastChar === '*' || operators.includes(lastChar)) {
-        dispatch(setInput('0.'));
-        dispatch(setCaculatorData(`${calculatorData}0.`));
+      if (isOperator(lastChar)) {
+        setInput("0.");
+        setOutput(`${output} 0.`);
       } else {
-        const isDecimalInInput = lastChar === '.' || input.includes('.');
-        dispatch(setInput(isDecimalInInput ? `${input}` : `${input}.`));
-        dispatch(setCaculatorData(isDecimalInInput
-          ? `${calculatorData}`
-          : `${calculatorData}.`));
+        const isDecimalIncluded = input.includes(".")
+        setInput(
+          isDecimalIncluded ? `${input}` : `${input}.`
+        );
+        ;
+        setOutput(isDecimalIncluded
+          ? `${output}`
+          : `${output}.`);
       }
     }
-  }
-  function handleOperators(value) {
-    if (calculatorData.length) {
-      dispatch(setInput(`${value}`));
-      const beforeLastChar = calculatorData.charAt(calculatorData.length - 2);
+  };
 
-      const isBeforeLastCharOperator =
-        operators.includes(beforeLastChar) || beforeLastChar === "*";
 
-      const lastChar = calculatorData.charAt(calculatorData.length - 1);
-
-      const lastCharIsOperator = operators.includes(lastChar) || lastChar === "*";
-
-      const validOperator = value === "x" ? "*" : value;
+  const handleOperators = (value) => {
+    if (isSubmitted) {
+      setSubmitted(false)
+    }
+    if (output.length) {
+      setInput(`${value}`);
+      const lastChar = output.charAt(output.length - 1);
+      const secondToLastChar = output.charAt(output.length - 2);
+      const isLastCharOperator = isOperator(lastChar);
+      const isSecondToLastCharOperator = isOperator(secondToLastChar);
       if (
-        (lastCharIsOperator && value !== "-") ||
-        isBeforeLastCharOperator && lastCharIsOperator
+        (isLastCharOperator && value !== "-") ||
+        isSecondToLastCharOperator && isLastCharOperator
       ) {
-        if (isBeforeLastCharOperator) {
-          const updatedValue = `${calculatorData.substring(
+        if (isSecondToLastCharOperator) {
+          const updatedMemory = `${output.substring(
             0,
-            calculatorData.length - 2
+            output.length - 2
           )}${value}`;
-          dispatch(setCaculatorData(updatedValue));
+          setOutput(updatedMemory);
         } else {
-          dispatch(setCaculatorData(`${calculatorData.substring(0, calculatorData.length - 1)}${validOperator}`));
+          setOutput(`${output.substring(0, output.length - 1)}${value}`);
         }
       } else {
-        dispatch(setCaculatorData(`${calculatorData}${validOperator}`));
+        setOutput(`${output}${value}`);
       }
     }
-  }
+  };
 
-
-  function handleInput(value) {
+  const handleInput = (value) => {
     const number = numbers.find((num) => num === value);
     const operator = operators.find((op) => op === value);
 
     switch (value) {
-      case '=':
+      case "=":
         handleEquals();
+        setSubmitted(true);
         break;
-      case 'AC':
+      case "AC":
+        setSubmitted(false);
         handleClear();
         break;
       case number:
         handleNumbers(value);
         break;
-      case '.':
-        handleDecimal();
+      case ".":
+        handleDecimal(value);
         break;
       case operator:
         handleOperators(value);
@@ -110,15 +127,8 @@ function Calculator() {
       default:
         break;
     }
-  }
+  };
 
-  function handleOutput() {
-    dispatch(setOutput(calculatorData))
-  }
-
-  useEffect(() => {
-    handleOutput()
-  }, [calculatorData])
 
   return (
     <>

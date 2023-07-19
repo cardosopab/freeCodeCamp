@@ -1,7 +1,7 @@
 const buttonData = [
   { id: "clear", value: "AC" },
   { id: "divide", value: "/" },
-  { id: "multiply", value: "x" },
+  { id: "multiply", value: "*" },
   { id: "seven", value: 7 },
   { id: "eight", value: 8 },
   { id: "nine", value: 9 },
@@ -18,7 +18,7 @@ const buttonData = [
   { id: "decimal", value: "." },
 ];
 
-const operators = ["AC", "/", "x", "+", "-", "="];
+const operators = ["AC", "/", "*", "+", "-", "="];
 
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
