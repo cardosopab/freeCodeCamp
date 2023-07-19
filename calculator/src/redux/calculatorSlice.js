@@ -5,7 +5,7 @@ export const calculatorSlice = createSlice({
     initialState: {
         output: '',
         input: '',
-        calculatorData: '',
+        isSubmitted: false,
     },
     reducers: {
         setOutput: (state, action) => {
@@ -14,13 +14,13 @@ export const calculatorSlice = createSlice({
         setInput: (state, action) => {
             state.input = action.payload
         },
-        setCaculatorData: (state, action) => {
-            state.calculatorData = action.payload
+        setSubmitted: (state, action) => {
+            state.isSubmitted = action.payload
         },
     }
 })
 
 
-export const { setOutput, setInput, setCaculatorData } = calculatorSlice.actions
+export const { setOutput, setInput, setSubmitted } = calculatorSlice.actions
 
 export default calculatorSlice.reducer

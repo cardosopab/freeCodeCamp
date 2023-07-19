@@ -18,8 +18,4 @@ const buttonData = [
   { id: "decimal", value: "." },
 ];
 
-const operators = ["AC", "/", "*", "+", "-", "="];
-
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-export { buttonData, operators, numbers };
+export { buttonData };

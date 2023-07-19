@@ -5,7 +5,7 @@ function Display() {
   const input = useSelector(state => state.calculator.input)
 
   return (
-    <div className="display">
+    <div className="screen">
       <p >{output}</p>
       <p id='display'>{input}</p>
     </div>
