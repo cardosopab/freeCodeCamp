@@ -1,22 +1,66 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+$body-background: #333;
+$pomodoro-background: tomato;
+$button-background: rgb(122, 173, 173);
+$button-padding: .3em;
+$border-radius: 2em;
+$font-color: #eee;
+$font-size: 18px;
+$font-weight: 600;
 
-  #pomodoro {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(50vw, 500px);
-    height: min(50vw, 500px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    // margin: auto auto;
+* {
+  margin: 0;
+  padding: 0;
+  font-size: $font-size;
+  font-weight: $font-weight;
+
+  body {
+    color: $font-color;
+    background-color: $body-background;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    #pomodoro {
+      background-color: $pomodoro-background;
+      border-radius: $border-radius;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(50vw, 500px);
+      height: min(50vw, 500px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        color: $font-color;
+        background-color: $button-background;
+        padding: $button-padding;
+        margin: $button-padding;
+      }
+
+      #upper-row {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+
+        .selectors {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      #lower-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }

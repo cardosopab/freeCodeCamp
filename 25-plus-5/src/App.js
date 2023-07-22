@@ -85,18 +85,31 @@ function App() {
 
   return (
     <div id='pomodoro'>
-      <div id="break-label">Break Length</div>
-      <button id="break-decrement" onClick={() => decrementBreak()} >decrement</button>
-      <div id="break-length">{breakLength}</div>
-      <button id="break-increment" onClick={() => incrementBreak()}>increment</button>
-      <div id="session-label">Session Length</div>
-      <button id="session-decrement" onClick={() => decrementSession()}>decrement</button>
-      <div id="session-length">{sessionLength}</div>
-      <button id="session-increment" onClick={() => incrementSession()}>increment</button>
-      <div id="timer-label">{timerLabel}</div>
-      <div id="time-left">{timerLength}</div>
-      <button id="start_stop" onClick={() => togglePlay()}>Play/Pause</button>
-      <button id="reset" onClick={() => handleReset()}>Reset</button>
+      <div id="upper-row">
+        <div id="left-col">
+          <div id="break-label">Break Length</div>
+          <div className="selectors">
+            <button id="break-decrement" onClick={() => decrementBreak()} ><i class="fa-solid fa-caret-down"></i></button>
+            <div id="break-length">{breakLength}</div>
+            <button id="break-increment" onClick={() => incrementBreak()}><i class="fa-solid fa-caret-up"></i></button>
+          </div>
+        </div>
+        <div id="right-col">
+          <div id="session-label">Session Length</div>
+          <div className="selectors">
+            <button id="session-decrement" onClick={() => decrementSession()}><i class="fa-solid fa-caret-down"></i></button>
+            <div id="session-length">{sessionLength}</div>
+            <button id="session-increment" onClick={() => incrementSession()}><i class="fa-solid fa-caret-up"></i></button>
+          </div>
+        </div>
+      </div>
+      <div id="lower-row">
+
+        <div id="timer-label">{timerLabel}</div>
+        <div id="time-left">{timerLength}</div>
+        <button id="start_stop" onClick={() => togglePlay()}>Play/Pause</button>
+        <button id="reset" onClick={() => handleReset()}>Reset</button>
+      </div>
       <audio ref={audioRef}
         id="beep"
         preload="auto"
