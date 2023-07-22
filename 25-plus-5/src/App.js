@@ -1,81 +1,107 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 function App() {
   const [breakLength, setBreakLength] = useState(5);
   const [sessionLength, setSessionLength] = useState(25);
-  const [timerLength, setTimerLength] = useState(25);
-  const [play, setPlay] = useState(false);
+  const [timerLength, setTimerLength] = useState(`25:00`);
+  const [playPause, setPlay] = useState(false);
   const [previousTimer, setPreviousTimer] = useState(null);
+  const [timerLabel, setTimerLabel] = useState('Session');
+  const intervalRef = useRef(null);
+  const isSessionRef = useRef(true);
+  const audioRef = useRef(null);
 
   function decrementBreak() {
-    setBreakLength(breakLength - 1);
+    if (breakLength > 1) {
+      setBreakLength(breakLength - 1);
+    }
   }
   function incrementBreak() {
-    setBreakLength(breakLength + 1);
+    if (breakLength < 60) {
+      setBreakLength(breakLength + 1);
+    }
   }
   function decrementSession() {
-    const decremented = sessionLength - 1
-    setSessionLength(decremented);
-    setTimerLength(decremented)
+    if (sessionLength > 1) {
+      const decremented = sessionLength - 1
+      setSessionLength(decremented);
+      setTimerLength(`${decremented.toString().padStart(2, '0')}:00`)
+    }
   }
   function incrementSession() {
-    const incremented = sessionLength + 1
-    setSessionLength(incremented);
-    setTimerLength(incremented)
+    if (sessionLength < 60) {
+      const incremented = sessionLength + 1
+      setSessionLength(incremented);
+      setTimerLength(`${incremented.toString().padStart(2, '0')}:00`)
+    }
   }
   function togglePlay() {
-    setPlay(!play)
+    setPlay(!playPause)
   }
-  function resetTimer() {
+  function handleReset() {
+    audioRef.current.pause()
+    audioRef.current.currentTime = 0
     setPlay(false)
-    setTimerLength(sessionLength)
+    clearInterval(intervalRef.current)
     setPreviousTimer(null)
+    isSessionRef.current = true;
+    setBreakLength(5)
+    setSessionLength(25)
+    setTimerLength('25:00')
+    setTimerLabel('Session')
   }
 
   useEffect(() => {
     let seconds = sessionLength * 60;
-    let interval;
-
-
     if (previousTimer !== null) {
       seconds = previousTimer;
     }
-
-    if (play) {
-      const minutes = Math.floor(seconds / 60);
-      const remainingSeconds = seconds % 60;
-      setTimerLength(`${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`);
-      interval = setInterval(() => {
+    seconds--;
+    if (playPause) {
+      console.log('timer started')
+      let minutes;
+      let remainingSeconds;
+      intervalRef.current = setInterval(() => {
         minutes = Math.floor(seconds / 60);
         remainingSeconds = seconds % 60;
         setTimerLength(`${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`);
-        seconds--;
         setPreviousTimer(seconds)
+        console.log('sessionLength', sessionLength)
+        console.log('breakLength', breakLength)
+        seconds--;
         if (seconds < 0) {
-          setPreviousTimer(null)
-          clearInterval(interval);
+          audioRef.current.play()
+          isSessionRef.current = !isSessionRef.current
+          console.log(isSessionRef.current)
+          seconds = isSessionRef.current ? sessionLength * 60 : breakLength * 60;
+          setTimerLength(`${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`);
+          setTimerLabel(isSessionRef.current ? 'Session' : 'Break')
         }
       }, 1000);
     }
-
     return () => {
-      clearInterval(interval);
+      clearInterval(intervalRef.current);
     };
-  }, [play]);
+  }, [playPause]);
 
   return (
     <div id='pomodoro'>
       <div id="break-label">Break Length</div>
-      <button id="break-decrement" onClick={() => decrementBreak()}>decrement</button>
+      <button id="break-decrement" onClick={() => decrementBreak()} >decrement</button>
       <div id="break-length">{breakLength}</div>
       <button id="break-increment" onClick={() => incrementBreak()}>increment</button>
       <div id="session-label">Session Length</div>
       <button id="session-decrement" onClick={() => decrementSession()}>decrement</button>
       <div id="session-length">{sessionLength}</div>
       <button id="session-increment" onClick={() => incrementSession()}>increment</button>
-      <div id="timer-label">Session/Break</div>
-      <div id="time-left">{play ? timerLength : previousTimer == null ? timerLength + ':00' : timerLength}</div>
+      <div id="timer-label">{timerLabel}</div>
+      <div id="time-left">{timerLength}</div>
       <button id="start_stop" onClick={() => togglePlay()}>Play/Pause</button>
-      <button id="reset" onClick={() => resetTimer()}>Reset</button>
+      <button id="reset" onClick={() => handleReset()}>Reset</button>
+      <audio ref={audioRef}
+        id="beep"
+        preload="auto"
+        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+      />
     </div>
   );
 }
