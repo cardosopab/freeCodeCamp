@@ -1,8 +1,3 @@
-// $body-background: #454545;
-// $light-gradient: #9a9a9a;
-// $dark-gradient: #575757;
-// $light-box-shadow: #b6b6b6;
-// $dark-box-shadow: #545454;
 $body-background: #e0e0e0;
 $light-gradient: #f0f0f0;
 $dark-gradient: #cacaca;
@@ -34,6 +29,28 @@ $dark-box-shadow: #bebebe;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      #tooltip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        width: 150px;
+        height: 50px;
+        padding: 2px;
+        font: 12px;
+        background: lightsteelblue;
+        box-shadow: 1px 1px 10px;
+        border-radius: 2px;
+        pointer-events: none;
+      }
+
+      .overlay {
+        position: absolute;
+        background: #fff;
+        pointer-events: none;
+      }
     }
   }
 }
